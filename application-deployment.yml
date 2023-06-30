@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-deployment
+  labels: 
+    app: application-deployment
+spec:
+  selector:
+    matchLabels:
+      app: application-deployment
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: application-deployment
+    spec:
+      containers:
+      - name: application-deployment
+        image: louisndjock/application-image
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
